@@ -8,7 +8,7 @@ project(test)
 enable_testing()
 
 add_executable(test test.cpp)
-target_link_libraries(test PRIVATE banking gtest gmoke)
+target_link_libraries(test PRIVATE banking gtest gmock)
 
 add_test(tests_dz5 test)
 
