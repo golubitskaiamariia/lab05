@@ -16,12 +16,12 @@ public:
 
 TEST(Transaction_test, test_SaveToDataBase) {
 
- Account acc1(1, 200);
- Account acc2(2, 873);
+ Account acc1(1, 300);
+ Account acc2(2, 777);
  Transaction trans;
  bool succes = trans.Make(acc1, acc2, 150);
- EXPECT_TRUE(acc1.GetBalance() == (200-150 - trans.fee()));
- EXPECT_TRUE(acc2.GetBalance() == (150+873));
+ EXPECT_TRUE(acc1.GetBalance() == (300-150 - trans.fee()));
+ EXPECT_TRUE(acc2.GetBalance() == (150+777));
  EXPECT_TRUE(succes);
 }
 
@@ -37,11 +37,11 @@ TEST(Transaction_test, test_fee) {
 }
 
 TEST(MockAccount_test, test_ChangeBalance) {
- MockAccount acc1(1, 200);
- MockAccount acc2(2, 873);
+ MockAccount acc1(1, 300);
+ MockAccount acc2(2, 777);
  Transaction trans;
 
- ON_CALL(acc1, GetBalance()).WillByDefault(::testing::Return(200));
+ ON_CALL(acc1, GetBalance()).WillByDefault(::testing::Return(300));
  EXPECT_CALL(acc1, ChangeBalance(::testing::_)).Times(::testing::AtLeast(1));
 
  EXPECT_CALL(acc2, ChangeBalance(150)).Times(::testing::AtLeast(1));
@@ -50,8 +50,8 @@ TEST(MockAccount_test, test_ChangeBalance) {
 }
 
 TEST(MockAccount_test, test_GetbBalance) {
- MockAccount acc1(1, 200);
- MockAccount acc2(2, 873);
+ MockAccount acc1(1, 300);
+ MockAccount acc2(2, 777);
  Transaction trans;
 
  EXPECT_CALL(acc1, GetBalance()).Times(2);
@@ -61,8 +61,8 @@ TEST(MockAccount_test, test_GetbBalance) {
 }
 
 TEST(MockAccount_test, test_lock) {
- MockAccount acc1(1, 200);
- MockAccount acc2(2, 873);
+ MockAccount acc1(1, 300);
+ MockAccount acc2(2, 777);
  Transaction trans;
 
  EXPECT_CALL(acc1, Lock()).Times(::testing::AtLeast(1));
@@ -72,8 +72,8 @@ TEST(MockAccount_test, test_lock) {
 }
 
 TEST(MockAccount_test, test_unlock) {
- MockAccount acc1(1, 200);
- MockAccount acc2(2, 873);
+ MockAccount acc1(1, 300);
+ MockAccount acc2(2, 777);
  Transaction trans;
 
  EXPECT_CALL(acc1, Unlock()).Times(::testing::AtLeast(1));
